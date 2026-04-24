@@ -1,9 +1,9 @@
 FROM php:8.2-cli
 
-# Install system dependencies
+# Install system dependencies + MySQL driver deps
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libzip-dev \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip pdo pdo_mysql
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
